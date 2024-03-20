@@ -1,15 +1,10 @@
+// Iniciando Route do Express
 const express = require('express');
-const routes = require('./routes');
+const route = express.Router();
 
-const app = express();
-app.use(express.urlencoded({ extended: true }));
+// Importando os Controllers
+const home = require('./src/controllers/home');
 
-// Static files
-app.use(express.static('public'));
-
-// EJS
-app.set('views', './src/views');
-app.set('view engine', 'ejs');
-
-app.use(routes);
-app.listen(3000, () => console.log('Acesse: http://localhost:3000/'));
+// Iniciando as rotas
+route.get('/', home.pagInicialGet);
+module.exports = route;
