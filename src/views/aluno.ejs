@@ -7,22 +7,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/script.js" defer></script>
-    <title>Cadastrar Aluno</title>
+    <title>Cadastro de Alunos</title>
 </head>
 <body style="background-color: #eeeaea;">
-    <header style="position: fixed;">
-        <a href="./index.html" style="text-decoration: none;" class="text-dark"><h5 class="my-0 mr-md-auto font-weight-normal" style="font-weight: 900;"><span class="controle">CONTROLE</span>
+    <header class="align-items-center d-flex justify-content-between position-fixed" style="box-shadow: 0 1px 4px rgba(146, 161, 176, 0.6); width: 100%; height: 70px; z-index: 100; background-color: white; top: 0; padding: 2px 10%;">
+        <a href="/" style="text-decoration: none;" class="text-dark"><h5 class="my-0 mr-md-auto font-weight-normal" style="font-weight: 900;"><span class="controle">CONTROLE</span>
             <span style="font-weight: 600;">de Estudantes</span>
         </h5></a>
         <nav class="my-2 my-md-9 mr-md-3">
             <a class="p-2 text-dark" style="font-weight: 600; margin-left: 12px; text-decoration: none; font-size: 15px; margin-left: 10px; position: relative;" href=""><strong>Cadastrar: </strong></a>
             <a class="p-2 text-dark" style="font-weight: 600; margin-left: 12px; text-decoration: none; font-size: 15px; margin-left: 10px; position: relative;" href="">Alunos</a>
             <a class="p-2 text-dark" style="font-weight: 600; margin-left: 12px; text-decoration: none; font-size: 15px; margin-left: 10px; position: relative;" href="">|</a>
-            <a class="p-2 text-dark" style="font-weight: 600; margin-left: 12px; text-decoration: none; font-size: 15px; margin-left: 10px; position: relative;" href="./sala.html">Sala</a>
+            <a class="p-2 text-dark" style="font-weight: 600; margin-left: 12px; text-decoration: none; font-size: 15px; margin-left: 10px; position: relative;" href="/sala">Sala</a>
         </nav>
     </header>
     <div class="container align-items-center justify-content-center p-2" style="width: 25%; margin-top: 200px; background-color: white; border: gray; border-radius: 5px;  box-shadow: 0 1px 4px rgba(146, 161, 176, 0.6); padding: 20px;">
-        <form> 
+        <form method="post" action="/aluno" enctype="multipart/form-data"> 
             <div class="d-flex flex-column align-items-center justify-content-center">
                 <h2 class="mb-3">Cadastrar Alunos</h2>
                 <div class="mb-3 d-flex justify-content-center">
@@ -32,27 +32,26 @@
             </div>
                 <div class="mb-3">
               <label for="name" class="form-label">Nome</label>
-              <input type="text" class="form-control" id="name" aria-describedby="">
+              <input type="text" class="form-control" id="name" aria-describedby="" name="nome">
             </div>
             <div class="mb-3">
               <label for="idade" class="form-label">Idade</label>
-              <input type="text" class="form-control" id="idade">
+              <input type="text" class="form-control" id="idade" name="idade">
             </div>
             <div class="mb-3">
                 <label for="sexo" class="form-label">Sexo</label>
-                <input type="text" class="form-control" id="sexo">
+                <input type="text" class="form-control" id="sexo" name="sexo">
             </div>
             <div class="mb-3">
                 <label for="sala" class="form-label">Sala</label>
-                <select id="sala" class="form-select">
-                    <option selected>Sala</option>
-                    <option>One</option>
-                    <option>Two</option>
-                    <option>Three</option>
+                <select id="sala" class="form-select" name="sala" required>
+                    <% for (let i=0; i < salas.length; i++) { %>
+                        <option value='<%= salas[i].IDSala %>'> <%= salas[i].Nome %> </option>
+                    <% } %>
                 </select>
               </div>
             <button type="submit" class="btn btn-primary">Cadastrar</button>
-          </form>
+        </form>
     </div>
 </body>
 </html>

@@ -10,75 +10,38 @@
     <title>Controle de Estudantes</title>
 </head>
 <body style="background-color: #eeeaea;;">
-    <header style="position: fixed;">
+    <header class="align-items-center d-flex justify-content-between position-fixed" style="box-shadow: 0 1px 4px rgba(146, 161, 176, 0.6); width: 100%; height: 70px; z-index: 100; background-color: white; top: 0; padding: 2px 10%;">
         <h5 class="my-0 mr-md-auto font-weight-normal" style="font-weight: 900;"><span class="controle">CONTROLE</span>
             <span style="font-weight: 600;">de Estudantes</span>
         </h5>
         <nav class="my-2 my-md-9 mr-md-3">
             <a class="p-2 text-dark" style="font-weight: 600; margin-left: 12px; text-decoration: none; font-size: 15px; margin-left: 10px; position: relative;" href=""><strong>Cadastrar: </strong></a>
-            <a class="p-2 text-dark" style="font-weight: 600; margin-left: 12px; text-decoration: none; font-size: 15px; margin-left: 10px; position: relative;" href="./aluno.html">Alunos</a>
-            <a class="p-2 text-dark" style="font-weight: 600; margin-left: 12px; text-decoration: none; font-size: 15px; margin-left: 10px; position: relative;" href="">|</a>
-            <a class="p-2 text-dark" style="font-weight: 600; margin-left: 12px; text-decoration: none; font-size: 15px; margin-left: 10px; position: relative;" href="./sala.html">Sala</a>
+            <a class="p-2 text-dark" style="font-weight: 600; margin-left: 12px; text-decoration: none; font-size: 15px; margin-left: 10px; position: relative;" href="/aluno">Alunos</a>
+            <a class="p-2 text-dark" style="font-weight: 600; margin-left: 12px; text-decoration: none; font-size: 15px; margin-left: 10px; position: relative;" href="/sala">Sala</a>
         </nav>
     </header>
     <div class="container-fluid flex-row gap-3 align-items-center justify-content-center d-flex flex-wrap" style="width: 1200px; max-width: 95%; margin-top: 100px;">
         <h4 style="max-width: 1440px; width: 60%;">Alunos: </h4>
-        <select class="form-select" aria-label=""  style="max-width: 150px;">
-            <option value="" selected>Sala</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-         </select>
+        <form action="/" method="post">
+            <select class="form-select" aria-label=""  style="max-width: 150px;" select id="sala" onchange="this.form.submit()" name="nome">
+                <option value="0">Selecione uma sala</option>
+                <% for (let i=0; i < salas.length; i++) { %>
+                    <option value='<%= salas[i].IDSala %>' <%= id == salas[i].IDSala ? 'selected' : ''%>> <%= salas[i].Nome %> </option>
+                <% } %>
+            </select>
+        </form>
     </div>
     <div class="container-fluid flex-row gap-3 align-items-center justify-content-center d-flex flex-wrap" style="width: 1200px; max-width: 95%; margin-top: 20px;">
-        <div class="card align-items-center justify-content-center" style="width: 18rem;  box-shadow: 0 1px 4px rgba(146, 161, 176, 0.6);">
-            <img src="img/usuario.png" class="card-img-top" alt="" style="margin-top: 7px;">
-            <div class="card-body d-flex flex-column align-items-center">
-              <h5 class="card-title">Donathan</h5>
-              <p class="card-text">19 anos</p>
-              <a href="#" class="btn btn-primary">Editar</a>
+        <% for (let i=0; i < alunos.length; i++) { %>
+            <div class="card align-items-center justify-content-center" style="width: 18rem;  box-shadow: 0 1px 4px rgba(146, 161, 176, 0.6);">
+                <img src="img/<%= alunos[i].Foto %>" class="card-img-top" alt="" style="margin-top: 7px;">
+                <div class="card-body d-flex flex-column align-items-center">
+                  <h5 class="card-title"><%= alunos[i].Nome %></h5>
+                  <p class="card-text"><%= alunos[i].Idade %></p>
+                  <a href="#" class="btn btn-primary">Editar</a>
+                </div>
             </div>
-        </div>
-        <div class="card align-items-center justify-content-center" style="width: 18rem;  box-shadow: 0 1px 4px rgba(146, 161, 176, 0.6);">
-            <img src="img/usuario.png" class="card-img-top" alt="" style="margin-top: 7px;">
-            <div class="card-body d-flex flex-column align-items-center">
-              <h5 class="card-title">Queila</h5>
-              <p class="card-text">19 anos</p>
-              <a href="#" class="btn btn-primary">Editar</a>
-            </div>
-        </div>
-        <div class="card align-items-center justify-content-center" style="width: 18rem;  box-shadow: 0 1px 4px rgba(146, 161, 176, 0.6);">
-            <img src="img/usuario.png" class="card-img-top" alt="" style="margin-top: 7px;">
-            <div class="card-body d-flex flex-column align-items-center">
-              <h5 class="card-title">Fábio</h5>
-              <p class="card-text">19 anos</p>
-              <a href="#" class="btn btn-primary">Editar</a>
-            </div>
-        </div>
-        <div class="card align-items-center justify-content-center" style="width: 18rem;  box-shadow: 0 1px 4px rgba(146, 161, 176, 0.6);">
-            <img src="img/usuario.png" class="card-img-top" alt="" style="margin-top: 7px;">
-            <div class="card-body d-flex flex-column align-items-center">
-              <h5 class="card-title">Andressa</h5>
-              <p class="card-text">19 anos</p>
-              <a href="#" class="btn btn-primary">Editar</a>
-            </div>
-        </div>
-        <div class="card align-items-center justify-content-center" style="width: 18rem;  box-shadow: 0 1px 4px rgba(146, 161, 176, 0.6);">
-            <img src="img/usuario.png" class="card-img-top" alt="" style="margin-top: 7px;">
-            <div class="card-body d-flex flex-column align-items-center">
-              <h5 class="card-title">João</h5>
-              <p class="card-text">21 anos</p>
-              <a href="#" class="btn btn-primary">Editar</a>
-            </div>
-        </div>    
-        <div class="card align-items-center justify-content-center" style="width: 18rem;  box-shadow: 0 1px 4px rgba(146, 161, 176, 0.6);">
-            <img src="img/usuario.png" class="card-img-top" alt="" style="margin-top: 7px;">
-            <div class="card-body d-flex flex-column align-items-center">
-              <h5 class="card-title">Mavi</h5>
-              <p class="card-text">17 anos</p>
-              <a href="#" class="btn btn-primary">Editar</a>
-            </div>
-        </div>  
+        <% } %>
     </div>
 </body>
 </html>
